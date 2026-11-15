@@ -1,29 +1,44 @@
-// WE wanna make a clock type counter .
-// The problem is that :- whenever re-rendering is happening then our component function is called so everytime our a remains 1 or our new timeinterval starts in every second . 
-// THus here comes the concept of "LIFECYCLES"
 
 import { useState } from "react";
-import { userEffect } from "react";
+import { useEffect } from "react";
+
 
 export default function App(){
 
-
-return <Clock></Clock>
+return <Counter></Counter>
 
 
 }
 
-function Clock(){
 
-const [count,setcount]=useState(0);
+// At the time of mounting , re-rendering , unmounting 
+function Counter(){
 
-userEffect(()=>
-  setTimeout(()=>{
-  setcount(count=>count + 1)
-},1000)
-,[])
+const [count , setcount]=useState(0);
+
+/* 
+     useEffect(function(){
+        setInterval(() => {
+          setcount(count + 1);  // Now we can't use count as this now .
+     }, 1000);
+   },[]);    // []:- dependency array 
+
+*/
+
+  useEffect(function(){
+     console.log("hello");  // will print only 1 time after mounting
+     
+       setInterval(function(){
+          setcount(count => count + 1);
+    }, 1000);
+
+  },[]);
+
+
+
 
 return <div>
 <h1>{count}</h1>
 </div>
+
 }
