@@ -19,7 +19,7 @@ const [count , setcount]=useState(0);
 /* 
      useEffect(function(){
         setInterval(() => {
-          setcount(count + 1);  // Now we can't use count as this now .
+          setcount(count + 1);  // Now we can't use count as this now , reason will be covered in upcoming notes.
      }, 1000);
    },[]);    // []:- dependency array 
 
@@ -29,7 +29,7 @@ const [count , setcount]=useState(0);
      console.log("hello");  // will print only 1 time after mounting
      
        setInterval(function(){
-          setcount(count => count + 1);
+          setcount(count => count + 1);   // we have to pass a function in setcount which will take previous value of count and return the new value of count.
     }, 1000);
 
   },[]);
